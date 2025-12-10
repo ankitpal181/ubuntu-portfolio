@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+@import "tailwindcss";
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+  overflow: hidden;
+  /* Prevent scrolling for desktop feel */
+  @apply bg-ubuntu-warm text-white;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+@theme {
+  --color-ubuntu-orange: #E95420;
+  --color-ubuntu-grey: #2C2C2C;
+  --color-ubuntu-warm: #772953;
+  --color-ubuntu-light: #FFFFFF;
+  --color-ubuntu-dark: #333333;
+  --font-ubuntu: 'Ubuntu', sans-serif;
+}
