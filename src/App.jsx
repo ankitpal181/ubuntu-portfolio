@@ -27,9 +27,9 @@ function App() {
     setOsState('desktop');
   };
 
-  if (isMobile) {
-    return <MobileProfile />;
-  }
+  // if (isMobile) {
+  //   return <MobileProfile />;
+  // }
 
   return (
     <OSProvider>
