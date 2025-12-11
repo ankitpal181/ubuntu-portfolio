@@ -1,12 +1,13 @@
 import React from 'react';
+import Tooltip from '../ui/MicroUI';
 
 const VSCode = () => {
     const contactInfo = {
         name: "Ankit Pal",
-        role: "Senior Frontend Engineer",
-        email: "email@example.com",
-        github: "https://github.com/ankitpal",
-        linkedin: "https://linkedin.com/in/ankitpal",
+        role: "Senior Software Development Engineer",
+        email: "ankitpal181@gmail.com",
+        github: "https://github.com/ankitpal181",
+        linkedin: "https://linkedin.com/in/ankitpal181",
         availableForHire: true
     };
 
@@ -43,7 +44,7 @@ const VSCode = () => {
                             {jsonString.split('\n').map((line, i) => (
                                 <div key={i} className="flex">
                                     <span className="text-gray-500 w-8 text-right mr-4 select-none">{i + 1}</span>
-                                    <span dangerouslySetInnerHTML={{ __html: syntaxHighlight(line) }}></span>
+                                    <span className="group" dangerouslySetInnerHTML={{ __html: syntaxHighlight(line) }}></span>
                                 </div>
                             ))}
                         </code>
@@ -72,7 +73,7 @@ function syntaxHighlight(line) {
     // Real implementation would parse tokens.
     let colored = line
         .replace(/"(.*?)":/g, '<span class="text-[#9CDCFE]">"$1"</span>:') // Keys
-        .replace(/: "(.*?)"/g, ': <span class="text-[#CE9178]">"$1"</span>') // String Values
+        .replace(/: "(.*?)"/g, `: <span class="text-[#CE9178] group-hover:cursor-pointer" onclick="navigator.clipboard.writeText('$1')" title="click to copy">"$1"</span>`) // String Values
         .replace(/: (true|false)/g, ': <span class="text-[#569CD6]">$1</span>'); // Booleans
     return colored;
 }

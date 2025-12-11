@@ -2,17 +2,18 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Terminal, Folder, Chrome, Code, Music, Trash2, Grid } from 'lucide-react';
 import { useOS } from '../../context/OSContext';
+import Tooltip from '../ui/MicroUI';
 
 const Dock = () => {
     const { windows, launchApp, minimizeWindow, focusWindow } = useOS();
 
     // Placeholder apps list - usually this would come from a config
     const apps = [
-        { id: 'chrome', title: 'Google Chrome', icon: Chrome, color: 'text-orange-500' },
-        { id: 'nautilus', title: 'Files', icon: Folder, color: 'text-blue-400' },
-        { id: 'terminal', title: 'Terminal', icon: Terminal, color: 'text-gray-300' },
-        { id: 'vscode', title: 'VS Code', icon: Code, color: 'text-blue-500' },
-        { id: 'spotify', title: 'Spotify', icon: Music, color: 'text-green-500' },
+        { id: 'chrome', title: 'Google Chrome', icon: Chrome, color: 'text-orange-500', text: 'Resume' },
+        { id: 'nautilus', title: 'Files', icon: Folder, color: 'text-blue-400', text: 'Projects' },
+        { id: 'terminal', title: 'Terminal', icon: Terminal, color: 'text-gray-300', text: 'About me' },
+        { id: 'vscode', title: 'VS Code', icon: Code, color: 'text-blue-500', text: 'Contact' },
+        { id: 'spotify', title: 'Spotify', icon: Music, color: 'text-green-500', text: 'Music' },
     ];
 
     const handleAppClick = (app) => {
@@ -40,19 +41,21 @@ const Dock = () => {
                     icon={app.icon}
                     color={app.color}
                     isOpen={windows[app.id]?.isOpen}
+                    text={app.text}
+                    tooltip={app.id === 'spotify' ? '0.1' : '1'}
                     onClick={() => handleAppClick(app)}
                 />
             ))}
 
             <div className="w-8 h-[1px] bg-white/10 my-1" />
 
-            <DockItem icon={Trash2} color="text-gray-400" />
-            <DockItem icon={Grid} color="text-white" />
+            <DockItem icon={Trash2} color="text-gray-400" text="Trash" tooltip="0" />
+            <DockItem icon={Grid} color="text-white" text="Apps" tooltip="0" />
         </div>
     );
 };
 
-const DockItem = ({ icon: Icon, color, isOpen, onClick }) => {
+const DockItem = ({ icon: Icon, color, isOpen, text, tooltip, onClick }) => {
     return (
         <div className="relative group p-2 cursor-pointer" onClick={onClick}>
             {/* Indicator Dot */}
@@ -66,7 +69,11 @@ const DockItem = ({ icon: Icon, color, isOpen, onClick }) => {
                 className={`p-2 rounded-xl bg-white/5 hover:bg-white/10 transition-colors ${color}`}
             >
                 <Icon className="w-6 h-6" />
+                <span className="text-xs text-white">{text}</span>
             </motion.div>
+
+            {/* Tooltip */}
+            {tooltip && <Tooltip tooltip={tooltip} />}
         </div>
     );
 };

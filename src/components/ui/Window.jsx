@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Minus, Square, Maximize2 } from 'lucide-react';
+import Tooltip from './MicroUI';
 
 const Window = ({ id, title, children, isOpen, isMinimized, isActive, onClose, onMinimize, onMaximize, onFocus, style = {} }) => {
     if (!isOpen && !isMinimized) return null;
@@ -38,14 +39,17 @@ const Window = ({ id, title, children, isOpen, isMinimized, isActive, onClose, o
                         </div>
 
                         <div className="flex items-center gap-2 absolute right-3">
-                            <button onClick={(e) => { e.stopPropagation(); onMinimize(id); }} className="w-6 h-6 rounded-full hover:bg-gray-300 flex items-center justify-center transition-colors">
+                            <button onClick={(e) => { e.stopPropagation(); onMinimize(id); }} className="w-6 h-6 rounded-full hover:bg-gray-300 flex items-center justify-center transition-colors group">
                                 <Minus className="w-3 h-3 text-gray-600" />
+                                <Tooltip tooltip='1' className='right-12 top-10 -translate-y-1/2 mr-3' />
                             </button>
-                            <button onClick={(e) => { e.stopPropagation(); onMaximize && onMaximize(id); }} className="w-6 h-6 rounded-full hover:bg-gray-300 flex items-center justify-center transition-colors">
+                            <button onClick={(e) => { e.stopPropagation(); onMaximize && onMaximize(id); }} className="w-6 h-6 rounded-full hover:bg-gray-300 flex items-center justify-center transition-colors group">
                                 <Square className="w-3 h-3 text-gray-600" />
+                                <Tooltip tooltip='0' className='right-4 top-10 -translate-y-1/2 mr-3' />
                             </button>
                             <button onClick={(e) => { e.stopPropagation(); onClose(id); }} className="w-6 h-6 rounded-full hover:bg-red-500 hover:text-white flex items-center justify-center transition-colors group">
                                 <X className="w-3 h-3 text-gray-600 group-hover:text-white" />
+                                <Tooltip tooltip='1' className='top-10 -translate-y-1/2 mr-3' />
                             </button>
                         </div>
                     </div>

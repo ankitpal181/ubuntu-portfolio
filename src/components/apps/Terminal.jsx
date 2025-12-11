@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useOS } from '../../context/OSContext';
 
 const Terminal = () => {
     const [history, setHistory] = useState([
-        "Welcome to Ubuntu 24.04.1 LTS (GNU/Linux 6.5.0-generic x86_64)",
-        "",
-        " * Documentation:  https://help.ubuntu.com",
-        " * Management:     https://landscape.canonical.com",
-        " * Support:        https://ubuntu.com/advantage",
+        "Welcome to my Ubuntu 24.04.1 LTS Portfolio (GNU/Linux 6.5.0-generic x86_64)",
         "",
         "Last login: " + new Date().toUTCString() + " from 192.168.1.5",
+        "",
+        " * Use `help` command to get started *",
         "ankitpal@ubuntu:~$ " // Prompt for typing effect
     ]);
     const [input, setInput] = useState('');
     const bottomRef = useRef(null);
+    const { windows, launchApp, minimizeWindow, focusWindow } = useOS();
 
     const commands = {
         help: () => [
@@ -26,12 +26,38 @@ const Terminal = () => {
         ls: () => ["Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos"],
         about: () => [
             "Hello! I'm Ankit Pal.",
-            "I'm a Senior Frontend Engineer & UI/UX Designer.",
-            "Passionate about building beautiful, functional web applications.",
+            "I'm a Senior Software Development Engineer.",
+            "Specialised in Backend Development and AI Agents.",
+            "Could code for Frontend but not a pro.",
         ],
-        projects: () => ["Use the File Explorer (Nautilus) icon to view my projects in detail!"],
-        contact: () => ["Email: email@example.com", "GitHub: github.com/ankitpal", "LinkedIn: linkedin.com/in/ankitpal"],
+        projects: () => {
+            const projectsApp = { id: 'nautilus' }
+            handleAppOpen(projectsApp)
+            return [""]
+        },
+        contact: () => {
+            const contactApp = { id: 'vscode' }
+            handleAppOpen(contactApp)
+            return [""]
+        },
         clear: () => [],
+    };
+
+    const handleAppOpen = (app) => {
+        const windowState = windows[app.id];
+        if (windowState?.isOpen) {
+            if (windowState.isMinimized) {
+                launchApp(app); // Re-opens/unminimizes
+            } else {
+                // If already open and focused, minimize. If not focused, focus.
+                // For simplified logic: click always focuses or unminimizes. 
+                // To implement "minimize on click if active", we'd need activeWindowId check.
+                // Let's just focus/launch for now.
+                focusWindow(app.id);
+            }
+        } else {
+            launchApp(app);
+        }
     };
 
     const handleKeyDown = (e) => {
