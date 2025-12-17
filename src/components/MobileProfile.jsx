@@ -66,7 +66,7 @@ const MobileProfile = () => {
             "  clear     - Clear the terminal",
             "  ls        - List directory contents",
             "  reboot    - Reload the page",
-            "  open      - Open a file or folder (e.g., `open projects.chat-agent`)"
+            "  open      - Open a file  (e.g., `open projects.chat-agent.source`)[do not include extension like .code or .html] or folder (e.g., `open projects.chat-agent`)"
         ],
         ls: () => ["Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos"],
         about: () => [
@@ -165,7 +165,9 @@ const MobileProfile = () => {
     };
 
     useEffect(() => {
-        bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+        if (bottomRef.current) {
+            bottomRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
     }, [history]);
 
     return (
