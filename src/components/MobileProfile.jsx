@@ -169,7 +169,7 @@ const MobileProfile = () => {
     }, [history]);
 
     return (
-        <div className="w-full h-screen bg-[#300a24] text-white overflow-hidden font-ubuntu flex flex-col">
+        <div className="w-full h-full bg-[#300a24] text-white overflow-hidden font-ubuntu flex flex-col">
             <TopBar />
             {/* Terminal Container - fills remaining space below TopBar */}
             <div
