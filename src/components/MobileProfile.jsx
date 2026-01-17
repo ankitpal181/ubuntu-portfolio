@@ -43,6 +43,23 @@ const MobileProfile = () => {
                     },
                     ext: ''
                 },
+                'toon-parse-mcp-pypi': {
+                    type: 'folder',
+                    children: {
+                        'source': { type: 'file', url: 'https://github.com/ankitpal181/toon-parse-mcp', ext: '.code' },
+                        'package': { type: 'file', url: 'https://pypi.org/project/toon-parse-mcp/', ext: '.install' }
+                    },
+                    ext: ''
+                },
+                'interview-ai-pypi': {
+                    type: 'folder',
+                    children: {
+                        'source': { type: 'file', url: 'https://github.com/ankitpal181/interview-ai', ext: '.code' },
+                        'documentation': { type: 'file', url: 'https://toonformatter.net/docs.html?package=interview-ai', ext: '.html' },
+                        'package': { type: 'file', url: 'https://pypi.org/project/interview-ai/', ext: '.install' }
+                    },
+                    ext: ''
+                },
                 'chrome-extensions': { type: 'file', url: 'https://better-web.netlify.app/', ext: '.zip' }
             }
         },

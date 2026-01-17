@@ -16,7 +16,9 @@ const Nautilus = () => {
         { id: 1, name: 'Chat Agent', type: 'folder' },
         { id: 2, name: 'Toon Formatter(npm)', type: 'folder' },
         { id: 3, name: 'Toon Parse(pypi)', type: 'folder' },
-        { id: 4, name: 'chrome-extensions.zip', type: 'file', url: 'https://better-web.netlify.app/' },
+        { id: 4, name: 'Toon Parse MCP(pypi)', type: 'folder' },
+        { id: 5, name: 'Interview AI(pypi)', type: 'folder' },
+        { id: 6, name: 'chrome-extensions.zip', type: 'file', url: 'https://better-web.netlify.app/' },
     ];
 
     const projectFiles = {
@@ -32,6 +34,15 @@ const Nautilus = () => {
             { id: 1, name: 'source.code', type: 'file', url: 'https://github.com/ankitpal181/toon-formatter-py' },
             { id: 2, name: 'documentation.html', type: 'file', url: 'https://toonformatter.net/docs.html?package=toon-parse' },
             { id: 3, name: 'package.install', type: 'file', url: 'https://pypi.org/project/toon-parse/' }
+        ],
+        4: [
+            { id: 1, name: 'source.code', type: 'file', url: 'https://github.com/ankitpal181/toon-parse-mcp' },
+            { id: 2, name: 'package.install', type: 'file', url: 'https://pypi.org/project/toon-parse-mcp/' }
+        ],
+        5: [
+            { id: 1, name: 'source.code', type: 'file', url: 'https://github.com/ankitpal181/interview-ai' },
+            { id: 2, name: 'documentation.html', type: 'file', url: 'https://toonformatter.net/docs.html?package=interview-ai' },
+            { id: 3, name: 'package.install', type: 'file', url: 'https://pypi.org/project/interview-ai/' }
         ],
     };
 
